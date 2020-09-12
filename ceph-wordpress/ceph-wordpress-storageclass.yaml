@@ -1,0 +1,30 @@
+##########################################################################
+#Author:                     zisefeizhu
+#QQ:                         2********0
+#Date:                       2020-09-12
+#FileName:                   ceph-wordpress-storageclass.yaml
+#URL:                        https://www.cnblogs.com/zisefeizhu/
+#Description:                The test script
+#Copyright (C):              2020 All rights reserved
+###########################################################################
+apiVersion: storage.k8s.io/v1 
+kind: StorageClass
+metadata:
+  name: ceph-wordpress
+  namespace: myweb
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: ceph.com/rbd
+reclaimPolicy: Retain
+parameters:
+  monitors: 
+    20.0.0.204:6789,20.0.0.205:6789,20.0.0.206:6789
+  adminId: admin
+  adminSecretName: ceph-admin-secret
+  adminSecretNamespace: myweb
+  pool: webapp
+  fsType: xfs
+  userId: webapp
+  userSecretName: ceph-myweb-secret
+  imageFormat: "2"
+  imageFeatures: "layering"

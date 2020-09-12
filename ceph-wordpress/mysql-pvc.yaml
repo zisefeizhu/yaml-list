@@ -1,0 +1,23 @@
+##########################################################################
+#Author:                     zisefeizhu
+#QQ:                         2********0
+#Date:                       2020-09-12
+#FileName:                   mysql-pvc.yaml
+#URL:                        https://www.cnblogs.com/zisefeizhu/
+#Description:                The test script
+#Copyright (C):              2020 All rights reserved
+###########################################################################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  namespace: myweb
+  labels:
+    app: wordpress
+spec:
+  storageClassName: ceph-wordpress
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

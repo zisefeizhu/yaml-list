@@ -14,3 +14,6 @@ kubernetes高可用部署：https://www.cnblogs.com/zisefeizhu/p/12505117.html
 ceph部署：https://www.cnblogs.com/zisefeizhu/p/12512377.html
 
 kubernetes 结合ceph 实现静态 & 动态存储并附带wordpress daemon案例：https://www.cnblogs.com/zisefeizhu/p/12310937.html
+
+## 基于ab的压力测试
+  是一个ab压力测试，主要是为了学习在于spec.template.containers. 下的command和args字段的使用

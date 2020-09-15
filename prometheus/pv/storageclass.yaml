@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: prometheus-storageclass
+  namespace: mon
+mountOptions:
+- nolock,tcp,noresvport
+- vers=3
+parameters:
+  volumeAs: subpath
+  server: "29afc4b600-mju20.cn-shenzhen.nas.aliyuncs.com:/prometheus/"
+provisioner: nasplugin.csi.alibabacloud.com 
+reclaimPolicy: Retain

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+  namespace: mon
+  labels:
+    app: prometheus
+data:
+  nodedown.rule.yml: |
+    groups:
+    - name: test-rule
+      rules:
+      - alert: NodeDown
+        expr: up == 0
+        for: 1m
+        labels:
+          team: node
+        annotations:
+          summary: "{{$labels.instance}}: down detected"
+          description: "{{$labels.instance}}:  is down 1m (current value is: {{ $value }}"

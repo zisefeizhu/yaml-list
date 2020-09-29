@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: __CI_PROJECT_NAME__
+  namespace: __NAMESPACE__
+  labels:
+    name: __CI_PROJECT_NAME__
+spec:
+  tls:
+    - hosts:
+        - "*.realibox.cn"
+      secretName: realibox-cn
+  rules:
+    - host: go.realibox.cn
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: __CI_PROJECT_NAME__
+              servicePort: __PORT__

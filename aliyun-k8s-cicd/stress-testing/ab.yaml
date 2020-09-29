@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: apache
+  namespace: default
+  labels:
+    name: apache
+
+spec:
+  #replicas: 3  #起的pod数
+  selector:
+    matchLabels:
+      name: apache
+  template:
+    metadata:
+      labels:
+        name: apache
+    spec:
+      containers:
+        - name: apache
+          image: httpd   #使用镜像
+          command: ["ab","-c 4000","-n 1000000"]    #执行命令
+          args: ["http://go.realibox.cn/"]    #压测域名
+          ports:
+            - name: http
+              containerPort: 80

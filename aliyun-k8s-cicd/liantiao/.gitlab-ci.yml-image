@@ -1,0 +1,18 @@
+before_script:
+  - export REGISTRY_IMAGE="${ALI_IMAGE_REGISTRY}"/realibox/"${CI_PROJECT_NAME}":"${CI_COMMIT_REF_NAME//\//-}"-"$CI_PIPELINE_ID"
+
+stages:
+  - build
+
+image_build:
+  tags:
+    - stage
+  stage: build
+  image: docker:latest
+  script:
+    - docker login -u "${ALI_IMAGE_USER}" -p "${ALI_IMAGE_PASSWORD}" "${ALI_IMAGE_REGISTRY}"
+    - docker pull golang:1.14.3-alpine
+    - docker tag golang:1.14.3-alpine "${REGISTRY_IMAGE}"
+    - docker push "${REGISTRY_IMAGE}"
+  only:
+    - master

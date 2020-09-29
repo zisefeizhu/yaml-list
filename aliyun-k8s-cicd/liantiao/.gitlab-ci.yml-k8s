@@ -1,0 +1,13 @@
+stages:
+  - kubectl
+
+## gitlab-ci与k8s集群联调 demo测试
+deploy-stage-kubectl:
+  tags:
+    - stage
+  image: "${KUBECTL_STAGE}"
+  stage: kubectl
+  script:
+    - echo "gitlab-ci与k8s集群联调 demo测试 success"
+  only:
+    - master

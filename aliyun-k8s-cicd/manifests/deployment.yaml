@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: __CI_PROJECT_NAME__
+  namespace: __NAMESPACE__
+  labels:
+    name: __CI_PROJECT_NAME__
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: __CI_PROJECT_NAME__
+  template:
+    metadata:
+      labels:
+        name: __CI_PROJECT_NAME__
+    spec:
+      imagePullSecrets:
+        - name: __NAMESPACE__-secret
+      containers:
+        - name: __CI_PROJECT_NAME__
+          image: registry.cn-shenzhen.aliyuncs.com/realibox/__CI_PROJECT_NAME__:__VERSION__
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: __PORT__
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 250m
+              memory: 128Mi
+          envFrom: ##向容器中提供配置文件或环境变量来实现不同配置,一般而言后端服务可能需要做configmap和secret
+            - configMapRef:
+                name: __CI_PROJECT_NAME__

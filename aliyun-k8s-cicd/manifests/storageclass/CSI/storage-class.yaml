@@ -1,0 +1,23 @@
+##########################################################################
+#Author:                     zisefeizhu
+#QQ:                         2********0
+#Date:                       2020-08-14
+#FileName:                   storage-class.yaml
+#URL:                        https://www.cnblogs.com/zisefeizhu/
+#Description:                The test script
+#Copyright (C):              2020 All rights reserved
+###########################################################################
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: __CI_PROJECT_NAME__
+  namespace: __NAMESPACE__
+mountOptions:
+  - nolock,tcp,noresvport
+  - vers=3
+parameters:
+  volumeAs: subpath
+  server: "29afc4b600-mju20.cn-shenzhen.nas.aliyuncs.com:/stage/"
+provisioner: nasplugin.csi.alibabacloud.com
+reclaimPolicy: Retain
+

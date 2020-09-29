@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: __CI_PROJECT_NAME__
+  namespace: __NAMESPACE__
+  labels:
+    name: __CI_PROJECT_NAME__
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "__PORT__"
+    prometheus.io/scheme: "http"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  selector:
+    name: __CI_PROJECT_NAME__
+  ports:
+    - name: http
+      port: __PORT__
+      targetPort: __PORT__

@@ -17,3 +17,5 @@ kubernetes 结合ceph 实现静态 & 动态存储并附带wordpress daemon案例
 
 ## 基于ab的压力测试
   是一个ab压力测试，主要是为了学习在于spec.template.containers. 下的command和args字段的使用
+## aliyun-k8s-cicd
+  aliyun 托管k8s集群 、自建gitlab代码仓库 、阿里云镜像仓库 实现ci/cd 部署  

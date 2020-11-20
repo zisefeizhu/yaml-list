@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  labels:
+    app: nginx
+spec:
+  tls:
+    - hosts:
+        - '*.stage.realibox.com'
+      secretName: default-stage-com-crt
+  rules:
+    - host: feizhu.stage.realibox.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx-service
+              servicePort: 80
+
